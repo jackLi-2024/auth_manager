@@ -1,0 +1,9 @@
+flask
+graphene
+flask_graphql
+flask-cors
+boto3
+xlrd
+xlsxwriter
+hashids
+shortuuid
