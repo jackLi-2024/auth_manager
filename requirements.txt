@@ -2,8 +2,11 @@ flask
 graphene
 flask_graphql
 flask-cors
-boto3
-xlrd
-xlsxwriter
 hashids
 shortuuid
+sqlalchemy
+casbin
+casbin_sqlalchemy_adapter
+configparser
+pymysql
+redis
