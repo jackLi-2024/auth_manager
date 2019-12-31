@@ -30,10 +30,10 @@ from module.auth_manager import arguments
 
 class Search(graphene.ObjectType):
     add_permission_for_user = graphene.Field(model.OperateReturn,
-                                             condition=arguments.SubObjActArgument(required=True),
+                                             condition=arguments.SubObjActListArgument(required=True),
                                              description="为用户加权限")
     add_permission_for_group = graphene.Field(model.OperateReturn,
-                                              condition=arguments.SubObjActArgument(required=True),
+                                              condition=arguments.SubObjActListArgument(required=True),
                                               description="为组加权限")
     delete_role = graphene.Field(model.OperateReturn,
                                  condition=arguments.SubArgument(required=True),
@@ -47,7 +47,7 @@ class Search(graphene.ObjectType):
                                            description="为组移除用户，使用户不再拥有组的权限")
 
     remove_permission = graphene.Field(model.OperateReturn,
-                                       condition=arguments.SubObjActArgument(required=True),
+                                       condition=arguments.SubObjActListArgument(required=True),
                                        description="移除权限:用户/组")
 
     search_group_for_user = graphene.Field(model.SearchReturn,

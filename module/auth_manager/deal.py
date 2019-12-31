@@ -25,18 +25,28 @@ from LJC_utils.utils import AuthManger
 
 class AddPermissionForUser(AuthManger):
     def deal(self):
-        sub = self.arguments.get("subject")
-        obj = self.arguments.get("resource")
-        act = self.arguments.get("action")
-        return {"status": self.add_permission_for_user(sub, obj, act)}
+        SOA_List = self.arguments.get("SOA_List", [])
+        if not SOA_List:
+            raise Exception("参数不能为空")
+        for i in SOA_List:
+            sub = i.get("subject")
+            obj = i.get("resource")
+            act = i.get("action")
+            self.add_permission_for_user(sub, obj, act)
+        return {"status": True}
 
 
 class AddPermissionForGroup(AuthManger):
     def deal(self):
-        sub = self.arguments.get("subject")
-        obj = self.arguments.get("resource")
-        act = self.arguments.get("action")
-        return {"status": self.add_permission_for_group(sub, obj, act)}
+        SOA_List = self.arguments.get("SOA_List", [])
+        if not SOA_List:
+            raise Exception("参数不能为空")
+        for i in SOA_List:
+            sub = i.get("subject")
+            obj = i.get("resource")
+            act = i.get("action")
+            self.add_permission_for_group(sub, obj, act)
+        return {"status": True}
 
 
 class DeleteRole(AuthManger):
@@ -62,10 +72,15 @@ class RemoveUserForGroup(AuthManger):
 
 class RemovePermission(AuthManger):
     def deal(self):
-        sub = self.arguments.get("subject")
-        obj = self.arguments.get("resource")
-        act = self.arguments.get("action")
-        return {"status": self.remove_permission(sub, obj, act)}
+        SOA_List = self.arguments.get("SOA_List", [])
+        if not SOA_List:
+            raise Exception("参数不能为空")
+        for i in SOA_List:
+            sub = self.arguments.get("subject")
+            obj = self.arguments.get("resource")
+            act = self.arguments.get("action")
+            self.remove_permission(sub, obj, act)
+        return {"status": True}
 
 
 class SearchGroupForUser(AuthManger):

@@ -22,7 +22,17 @@ except:
 import graphene
 
 
+class SubObjAct(graphene.InputObjectType):
+    subject = graphene.String(description="权限主体可以是用户或者组", required=True)
+    resource = graphene.String(description="权限资源可以是url等", required=True)
+    action = graphene.String(description="权限行为", required=True)
+
+
 #################
+
+class SubObjActListArgument(graphene.InputObjectType):
+    SOA_List = graphene.List(SubObjAct, description="权限行为", required=True)
+
 
 class SubObjActArgument(graphene.InputObjectType):
     class Meta:

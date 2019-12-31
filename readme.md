@@ -23,6 +23,7 @@
 **请求URL：**
 - ` http://127.0.0.1:4901/graphql_api `
 
+
 **请求方式：**
 - POST
 
@@ -125,12 +126,8 @@
 
 ```
   {
-        "query": "query add_permission_for_user($condition: SubObjActArgument!){  add_permission_for_user(condition:$condition){    status  }}",
-        "variables": {"condition": {
-            "subject": "lijiacai",
-            "resource": "/data/",
-            "action": "read"
-        }},
+        "query": "query add_permission_for_user($condition: SubObjActListArgument!){  add_permission_for_user(condition:$condition){    status  }}",
+        "variables": {"condition":{"SOA_List":[{"subject":"lijiacai","resource":"/data/","action":"read"},{"subject":"lijiacai","resource":"/data/1","action":"read"}]}},
         "operationName": "add_permission_for_user"}
 ```
 
@@ -142,25 +139,21 @@
   }}}
 ```
 
-**6、为用户加权限：**
+**6、为组加权限：**
 
 - 参数：
 
 ```
   {
-        "query": "query add_permission_for_user($condition: SubObjActArgument!){  add_permission_for_user(condition:$condition){    status  }}",
-        "variables": {"condition": {
-            "subject": "lijiacai",
-            "resource": "/data/",
-            "action": "read"
-        }},
-        "operationName": "add_permission_for_user"}
+        "query": "query add_permission_for_group($condition: SubObjActListArgument!){  add_permission_for_group(condition:$condition){    status  }}",
+        "variables": {"condition":{"SOA_List":[{"subject":"admin","resource":"/data/","action":"read"},{"subject":"admin","resource":"/data/1","action":"read"}]}},
+        "operationName": "add_permission_for_group"}
 ```
 
 - 返回示例
 
 ```
-  {"data":{"add_permission_for_user":{
+  {"data":{"add_permission_for_group":{
   	"status":true
   }}}
 ```
@@ -171,12 +164,8 @@
 
 ```
   {
-        "query": "query remove_permission($condition: SubObjActArgument!){  remove_permission(condition:$condition){    status  }}",
-        "variables": {"condition": {
-            "subject": "admin3",
-            "resource": "/data/",
-            "action": "read"
-			}},
+        "query": "query remove_permission($condition: SubObjActListArgument!){  remove_permission(condition:$condition){    status  }}",
+        "variables": {"condition":{"SOA_List":[{"subject":"admin","resource":"/data/","action":"read"},{"subject":"admin","resource":"/data/1","action":"read"}]}},
         "operationName": "remove_permission"}
 ```
 
